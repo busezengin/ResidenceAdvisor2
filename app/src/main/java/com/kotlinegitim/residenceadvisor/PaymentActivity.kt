@@ -27,6 +27,9 @@ class PaymentActivity : AppCompatActivity() {
     lateinit var payment: TextView
     lateinit var payButton: Button
 
+    var month: Int=0
+    var totalPayment: Int = 0
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,28 @@ class PaymentActivity : AppCompatActivity() {
         payment =findViewById(R.id.totalPaymentTextView)
         payButton = findViewById(R.id.payPaymentButton)
 
+        payButton.setOnClickListener {
+            if(usr.budget>=totalPayment) {
+                budget.text = "BUDGET: "+(usr.budget - totalPayment).toString()
+                payment.text= "TOTAL PAYMENT: 0"
+
+                val list = usr.lastDuesPaymentDate.split("-")
+
+                var updatedMonth = (list[1].toInt()+month)
+                var updatedMonthString = updatedMonth.toString()
+                if(updatedMonth<10){
+                    updatedMonthString = "0"+updatedMonth.toString()
+                }
+                var date = list[0] + "-" + updatedMonthString + "-"+ list[2]
+                Log.d("userdata", date)
+
+                db.collection("Users").document(auth.currentUser?.uid.toString())
+                        .update(mapOf(
+                                "budget" to usr.budget - totalPayment,
+                                "lastDuesPaymentDate" to date
+                        ))
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -92,7 +117,9 @@ class PaymentActivity : AppCompatActivity() {
 
         val date2: Date = sdf.parse(now)
         val diff: Long = date2.getTime() - date.getTime()
-        payment.text= "TOTAL PAYMENT: "+(dues.toString().toInt()*((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)/30).toInt())).toString()
+        month = (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)/30).toInt()
+        totalPayment = dues.toString().toInt()*(month)
+        payment.text= "TOTAL PAYMENT: "+(totalPayment).toString()
 
 
     }
