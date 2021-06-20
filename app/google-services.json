@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "472833501463",
+    "project_id": "residence-advisor-265f1",
+    "storage_bucket": "residence-advisor-265f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472833501463:android:7622be15cbbdf95d2d2f52",
+        "android_client_info": {
+          "package_name": "com.kotlinegitim.residenceadvisor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472833501463-h59dil2rsjo7eg0qt3but4vm3shdnnta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTv2RDKvkM1SuEMV4gRVKDaD_md6niIjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472833501463-h59dil2rsjo7eg0qt3but4vm3shdnnta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
