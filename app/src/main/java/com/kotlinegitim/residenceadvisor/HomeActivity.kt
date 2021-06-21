@@ -78,10 +78,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         if (document != null) {
                             usr = document.toObject(User::class.java)!!
                             if(usr.role!="janitor"){
-                                items = listOf("Announcements", "Payments", "Questionnaire", "Market", "Fault and Complaint Notification")
+                                items = listOf("Announcements", "Payments", "Questionnaire", "Market", "Fault and Complaint Notification", "Open Door With QR Code")
                             }
                             else{
-                                items = listOf("Announcements", "Payments", "Questionnaire", "Orders", "Fault and Complaint Notification")
+                                items = listOf("Announcements", "Payments", "Questionnaire", "Orders", "Fault and Complaint Notification", "Open Door With QR Code")
                             }
                             val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items)
                             listView = findViewById(R.id.homeListView)
@@ -107,12 +107,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val intent: Intent
         if(position==0){
             intent = Intent(this, AnnouncementActivity::class.java)
+            intent.putExtra("ApartmentID",usr.apartmentID)
         }
         else if(position==1){
             intent = Intent(this, PaymentActivity::class.java)
         }
         else if(position==2){
-            intent = Intent(this, AnnouncementActivity::class.java)
+            intent = Intent(this, QuestionnaireActivity::class.java)
+            intent.putExtra("ApartmentID",usr.apartmentID)
         }
         else if(position==3){
             if(usr.role != "janitor"){

@@ -1,5 +1,6 @@
 package com.kotlinegitim.residenceadvisor
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,35 +11,42 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class AnnouncementActivity : AppCompatActivity() {
+class QuestionnaireActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
     lateinit var listView: ListView
-    val announcements : MutableList<String> = mutableListOf()
-    private lateinit var adapter:ArrayAdapter<String>
-
+    val questionnaires : MutableList<String> = mutableListOf()
+    val questionnaireIDs : MutableList<String> = mutableListOf()
+    private lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_announcement)
-
+        setContentView(R.layout.activity_questionnaire)
         auth = FirebaseAuth.getInstance()
         val apartmentID=intent.getStringExtra("ApartmentID")
         if (apartmentID != null) {
             getAnnouncementData(apartmentID)
         }
-        adapter= ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, announcements)
-        listView = findViewById(R.id.announcementListView)
+        adapter= ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, questionnaires)
+        listView = findViewById(R.id.questionnaireListView)
         listView.adapter = adapter
+        listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            intent = Intent(this, VoteQuestionnaireActivity::class.java)
+            intent.putExtra("ApartmentID",apartmentID)
+            intent.putExtra("QuestionnaireID",questionnaireIDs[position])
+            startActivity(intent)
+        }
+
 
     }
     fun getAnnouncementData(apartmentID:String){
-        db.collection("Announcements"+apartmentID)
+        db.collection("Questionnaires"+apartmentID)
                 .get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        announcements.add(document.data.get("context") as String)
+                        questionnaires.add(document.data.get("question") as String)
                         adapter.notifyDataSetChanged()
+                        questionnaireIDs.add(document.id)
                     }
 
                 }
@@ -47,4 +55,5 @@ class AnnouncementActivity : AppCompatActivity() {
                 }
 
     }
+
 }
