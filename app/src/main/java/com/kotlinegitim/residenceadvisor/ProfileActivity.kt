@@ -71,7 +71,7 @@ class ProfileActivity : AppCompatActivity() {
                 .addOnSuccessListener { document ->
                     if (document != null) {
                         apartmentNameString = document.get("apartmentName") as String
-                        apartmentName.text = "Apartment Name"+ apartmentNameString
+                        apartmentName.text = "Apartment Name: "+ apartmentNameString
                     } else {
                         Log.d("userdata", "No such document")
                     }
@@ -83,9 +83,9 @@ class ProfileActivity : AppCompatActivity() {
 
 
 
-        nameSurname.text= "Name Surname:"+usr.firstname+ " "+usr.lastname
-        eMail.text = "Email" + usr.email
-        apartmentNo.text= "Apartment No" + usr.apartmentNumber
+        nameSurname.text= "Name Surname: "+usr.firstname+ " "+usr.lastname
+        eMail.text = "Email: " + usr.email
+        apartmentNo.text= "Apartment No: " + usr.apartmentNumber
 
     }
 
