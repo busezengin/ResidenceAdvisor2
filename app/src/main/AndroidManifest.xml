@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ResidenceAdvisor">
-        <activity android:name=".VoteQuestionnaireActivity"></activity>
+        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".VoteQuestionnaireActivity" />
         <activity android:name=".QuestionnaireActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".AnnouncementActivity" />

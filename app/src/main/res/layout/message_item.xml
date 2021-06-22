@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:id="@+id/chatItemRelativeLayout"
+    >
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/right_relative"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:id="@+id/messageTextViewRight"
+            android:padding="17dp"
+            android:text="asdfasdfasdf"
+            android:textSize="22sp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/background_right"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/left_relative"
+        android:layout_alignParentStart="true"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/messageTextViewLeft"
+            android:padding="17dp"
+            android:text="asdfasdfgs"
+            android:textSize="22sp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/background_left"/>
+    </RelativeLayout>
+
+</RelativeLayout>
