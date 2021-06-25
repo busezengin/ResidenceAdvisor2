@@ -119,7 +119,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         else if(position==3){
             if(usr.role != "janitor"){
-                intent = Intent(this, AnnouncementActivity::class.java)
+                intent = Intent(this, MarketActivity::class.java)
             }
             else{
                 intent = Intent(this, AnnouncementActivity::class.java)
