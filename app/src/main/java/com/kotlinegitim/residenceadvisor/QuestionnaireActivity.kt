@@ -1,12 +1,12 @@
 package com.kotlinegitim.residenceadvisor
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -25,7 +25,7 @@ class QuestionnaireActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val apartmentID=intent.getStringExtra("ApartmentID")
         if (apartmentID != null) {
-            getAnnouncementData(apartmentID)
+            getQuestionnaire(apartmentID)
         }
         adapter= ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, questionnaires)
         listView = findViewById(R.id.questionnaireListView)
@@ -39,7 +39,7 @@ class QuestionnaireActivity : AppCompatActivity() {
 
 
     }
-    fun getAnnouncementData(apartmentID:String){
+    fun getQuestionnaire(apartmentID:String){
         db.collection("Questionnaires"+apartmentID)
                 .get()
                 .addOnSuccessListener { result ->

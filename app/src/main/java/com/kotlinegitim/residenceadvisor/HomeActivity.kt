@@ -1,5 +1,6 @@
 package com.kotlinegitim.residenceadvisor
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -17,6 +19,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.zxing.integration.android.IntentIntegrator
 import com.kotlinegitim.residenceadvisor.classes.User
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -79,10 +82,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         if (document != null) {
                             usr = document.toObject(User::class.java)!!
                             if(usr.role!="janitor"){
-                                items = listOf("Announcements", "Payments", "Questionnaire", "Market", "Fault and Complaint Notification", "Open Door With QR Code")
+                                items = listOf("Announcements", "Payments", "Questionnaire", "Market", "Open Door With QR Code")
                             }
                             else{
-                                items = listOf("Announcements", "Payments", "Questionnaire", "Orders", "Fault and Complaint Notification", "Open Door With QR Code")
+                                items = listOf("Announcements", "Payments", "Questionnaire", "Orders", "Open Door With QR Code")
                             }
                             val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items)
                             listView = findViewById(R.id.homeListView)
@@ -109,26 +112,63 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if(position==0){
             intent = Intent(this, AnnouncementActivity::class.java)
             intent.putExtra("ApartmentID",usr.apartmentID)
+            startActivity(intent)
         }
         else if(position==1){
             intent = Intent(this, PaymentActivity::class.java)
+            startActivity(intent)
         }
         else if(position==2){
             intent = Intent(this, QuestionnaireActivity::class.java)
             intent.putExtra("ApartmentID",usr.apartmentID)
+            startActivity(intent)
         }
         else if(position==3){
             if(usr.role != "janitor"){
                 intent = Intent(this, MarketActivity::class.java)
+                intent.putExtra("ApartmentID",usr.apartmentID)
             }
             else{
-                intent = Intent(this, AnnouncementActivity::class.java)
+                intent = Intent(this, OrderActivity::class.java)
+                intent.putExtra("ApartmentID",usr.apartmentID)
             }
-
+            startActivity(intent)
         }
         else{
-            intent = Intent(this, AnnouncementActivity::class.java)
+            /*intent = Intent(this, ScanQRCodeActivity::class.java)
+            intent.putExtra("ApartmentID",usr.apartmentID)*/
+            val scanner = IntentIntegrator(this)
+            scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+            scanner.setBeepEnabled(false)
+            scanner.initiateScan()
         }
-        startActivity(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+            if (result != null) {
+                if (result.contents == null) {
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+                } else {
+                    db.collection("Apartments").document(usr.apartmentID)
+                        .get()
+                        .addOnSuccessListener { document ->
+                            if (document != null) {
+                                if(result.contents.equals(document.data?.get("apartmentQR") as String)){
+                                    Toast.makeText(this, (document.data?.get("apartmentName") as String)+" door opened: ", Toast.LENGTH_LONG).show()
+                                }
+                            } else {
+                                Log.d("userdata", "No such document")
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.d("userdata", "get failed with ", exception)
+                        }
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
     }
 }

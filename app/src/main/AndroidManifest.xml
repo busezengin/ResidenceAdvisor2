@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ResidenceAdvisor">
-        <activity android:name=".MarketActivity"></activity>
+        <activity android:name=".ScanQRCodeActivity"></activity>
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".MarketActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".VoteQuestionnaireActivity" />
         <activity android:name=".QuestionnaireActivity" />

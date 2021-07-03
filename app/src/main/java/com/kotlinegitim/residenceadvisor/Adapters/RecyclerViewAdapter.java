@@ -15,13 +15,10 @@ import java.util.List;
 
 public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private List<Product> list;
-    //private ItemClickListener clickListener;
 
 
     public RecyclerViewAdapter(List<Product> list) {
         this.list = list;
-        //this.clickListener  = clickListener;
-
     }
     @NonNull
     @Override
@@ -34,13 +31,6 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.titleTextView.setText(list.get(position).getName());
-
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickListener.onItemClick(list.get(position));
-            }
-        });*/
     }
 
     @Override
@@ -56,10 +46,5 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
             titleTextView = view.findViewById(R.id.titleTextView);
         }
 
-    }
-
-    public interface ItemClickListener {
-
-        //public void onItemClick(DataModel dataModel);
     }
 }
