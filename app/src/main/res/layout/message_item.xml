@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:id="@+id/messageTextViewRight"
+            android:textColor="@color/white"
             android:padding="17dp"
             android:text="asdfasdfasdf"
             android:textSize="22sp"

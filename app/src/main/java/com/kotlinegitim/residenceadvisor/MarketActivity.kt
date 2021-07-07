@@ -120,7 +120,7 @@ class MarketActivity : AppCompatActivity() {
                         // Respond to item chosen
                     }.setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
                         // Respond to negative button press
-                    }.setPositiveButton(resources.getString(R.string.ok)) { dialog, which ->
+                    }.setPositiveButton(resources.getString(R.string.order)) { dialog, which ->
                         sendShopListDatabase()
                     }
                     .show()

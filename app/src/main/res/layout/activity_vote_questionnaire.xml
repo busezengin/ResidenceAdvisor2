@@ -10,10 +10,10 @@
         android:id="@+id/checkBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="128dp"
         android:text="CheckBox"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,9 +21,9 @@
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="30dp"
         android:text="CheckBox"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/checkBox1"
         app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
 
@@ -31,9 +31,9 @@
         android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="30dp"
         android:text="CheckBox"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/checkBox2"
         app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
@@ -41,9 +41,9 @@
         android:id="@+id/checkBox4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="30dp"
         android:text="CheckBox"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/checkBox3"
         app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
@@ -51,19 +51,21 @@
         android:id="@+id/checkBox5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="30dp"
         android:text="CheckBox"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/checkBox4"
         app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
 
     <TextView
         android:id="@+id/questionTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginBottom="70dp"
-        android:text="TextView"
+        android:text="TEXT"
+        android:textStyle="bold"
+        android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/checkBox1"
         app:layout_constraintStart_toStartOf="@+id/checkBox1" />
 
@@ -71,9 +73,9 @@
         android:id="@+id/voteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
         android:layout_marginTop="40dp"
         android:text="VOTE"
-        app:layout_constraintStart_toStartOf="@+id/checkBox5"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox5"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

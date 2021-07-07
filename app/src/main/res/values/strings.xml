@@ -5,4 +5,5 @@
     <string name="ok">ok</string>
     <string name="cancel">cancel</string>
     <string name="profile_picture_desc">Profile picture</string>
+    <string name="order">order</string>
 </resources>

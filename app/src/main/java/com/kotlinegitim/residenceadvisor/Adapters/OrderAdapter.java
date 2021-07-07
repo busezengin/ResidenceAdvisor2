@@ -58,8 +58,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                         //listeden birine tıklanırsa diye
                     }
                 });
-                builder.setNegativeButton("Hayır", null);
-                builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancel", null);
+                builder.setPositiveButton("Delivered", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         db.collection("Orders"+apartmentID).document(list.get(position).getDate())
