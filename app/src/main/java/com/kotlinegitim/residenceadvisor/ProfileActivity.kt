@@ -34,12 +34,12 @@ class ProfileActivity : AppCompatActivity() {
         eMail = findViewById(R.id.eMailProfileTextView)
         apartmentName = findViewById(R.id.apartmentNameProfileTextView)
         apartmentNo = findViewById(R.id.apartmentNoProfileTextView)
-        changePassword = findViewById(R.id.changePasswordProfileButton)
-
+        //changePassword = findViewById(R.id.changePasswordProfileButton)
+/*
         changePassword.setOnClickListener{
             //TODO
         }
-
+*/
         getUserProfileData()
     }
     fun getUserProfileData(){
@@ -71,7 +71,7 @@ class ProfileActivity : AppCompatActivity() {
                 .addOnSuccessListener { document ->
                     if (document != null) {
                         apartmentNameString = document.get("apartmentName") as String
-                        apartmentName.text = "Apartment Name: "+ apartmentNameString
+                        apartmentName.text = apartmentNameString
                     } else {
                         Log.d("userdata", "No such document")
                     }
@@ -83,9 +83,9 @@ class ProfileActivity : AppCompatActivity() {
 
 
 
-        nameSurname.text= "Name Surname: "+usr.firstname+ " "+usr.lastname
-        eMail.text = "Email: " + usr.email
-        apartmentNo.text= "Apartment No: " + usr.apartmentNumber
+        nameSurname.text= usr.firstname+ " "+usr.lastname
+        eMail.text =  usr.email
+        apartmentNo.text=  usr.apartmentNumber
 
     }
 

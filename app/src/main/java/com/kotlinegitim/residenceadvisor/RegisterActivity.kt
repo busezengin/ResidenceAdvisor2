@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -28,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var apartmentId: EditText
     lateinit var apartmentNumber: EditText
     lateinit var register: Button
-
+    lateinit var haveanac: TextView
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +47,16 @@ class RegisterActivity : AppCompatActivity() {
 
         register = findViewById(R.id.registerButton)
 
+        haveanac =findViewById((R.id.haveanac))
+
         register.setOnClickListener{
             createUser()
         }
-
+        haveanac.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 

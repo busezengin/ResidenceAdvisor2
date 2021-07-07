@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var password: EditText
 
     lateinit var login: Button
-    lateinit var register: Button
+    lateinit var register: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         email = findViewById(R.id.editTextEmailAddress)
         password = findViewById(R.id.editTextPassword)
         login = findViewById(R.id.buttonLogin)
-        register = findViewById(R.id.buttonRegister)
+        register = findViewById(R.id.createnewac)
 
         login.setOnClickListener{
             loginUser()
